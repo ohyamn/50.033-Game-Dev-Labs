@@ -477,7 +477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4216858592996810343, guid: 4106009e9298fca45af1db765aeef451, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -144.1999
+      value: -143.6999
       objectReference: {fileID: 0}
     - target: {fileID: 4216858592996810343, guid: 4106009e9298fca45af1db765aeef451, type: 3}
       propertyPath: m_LocalPosition.z
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 70
   maxSpeed: 10
-  upSpeed: 25
+  upSpeed: 30
   enemyLocation: {fileID: 6643979696364340852}
   scoreText: {fileID: 805830039}
   restartButton: {fileID: 921083025}
@@ -1270,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4216858592996810343, guid: 4106009e9298fca45af1db765aeef451, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -144.1999
+      value: -143.6999
       objectReference: {fileID: 0}
     - target: {fileID: 4216858592996810343, guid: 4106009e9298fca45af1db765aeef451, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1979,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8909817184642669863, guid: c6d7f8aa4ca312440aaa99933cc03d07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -144.19952
+      value: -143.69952
       objectReference: {fileID: 0}
     - target: {fileID: 8909817184642669863, guid: c6d7f8aa4ca312440aaa99933cc03d07, type: 3}
       propertyPath: m_LocalPosition.z
