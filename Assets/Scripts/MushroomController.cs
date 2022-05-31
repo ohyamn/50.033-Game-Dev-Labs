@@ -15,7 +15,7 @@ public class MushroomController : MonoBehaviour
     {
         shroomBody = GetComponent<Rigidbody2D>();
         // Set direction for shroom
-        currentDirection = Vector2.right;
+        currentDirection = new Vector2(Random.Range(-1f, 1f), 0);
         // Allow mushroom to spring out of box
         shroomBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
     }
