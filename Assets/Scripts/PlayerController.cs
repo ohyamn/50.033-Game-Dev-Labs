@@ -20,6 +20,7 @@ private bool countScoreState = false;
 public GameObject restartButton;
 private Animator marioAnimator;
 private AudioSource marioAudio;
+public ParticleSystem dustCloud;
     void Start()
     {
         // Set to be 30 FPS
@@ -67,10 +68,12 @@ private AudioSource marioAudio;
             onGroundState = true;
             countScoreState = false; //reset score state
             scoreText.text = "Score:" + score.ToString();
+            dustCloud.Play();
         }
 
         if(col.gameObject.CompareTag("Obstacle")){
             onGroundState = true;
+            dustCloud.Play();
         }
     }
     void  FixedUpdate()
