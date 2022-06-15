@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8909817183352498172}
+  bumpAudio: {fileID: 0}
   springJoint: {fileID: 8909817183352498170}
   consummablePrefab: {fileID: 9137625576665806495, guid: 2fa7190a4f207ab40aea28b9bcaa3b33, type: 3}
   spriteRenderer: {fileID: 8909817183352498173}
@@ -259,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8909817184642669863}
   m_Layer: 11
-  m_Name: HittableSimple
+  m_Name: HittableSimpleOrange
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debrisPrefab: {fileID: 3006824604130237191, guid: c37dbd521f88e234b89107d8e199c04d, type: 3}
+  coinPrefab: {fileID: 7758858997806513354, guid: c77d1cac943fd09418c8e29bab2efe43, type: 3}
 --- !u!1 &5192936631911140009
 GameObject:
   m_ObjectHideFlags: 0
