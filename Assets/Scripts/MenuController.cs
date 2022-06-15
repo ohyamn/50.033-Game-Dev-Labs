@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
 
     public void StartButtonClicked(){
         foreach (Transform eachChild in transform){
-            if (eachChild.name != "Score"){
+            if (eachChild.name != "Score" && eachChild.name != "Powerups"){
                 Debug.Log("Child found. Name:" + eachChild.name);
                 eachChild.gameObject.SetActive(false);
                 Time.timeScale = 1.0f;

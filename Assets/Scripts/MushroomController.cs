@@ -9,7 +9,7 @@ public class MushroomController : MonoBehaviour
     private Vector2 currentPosition;
     private Vector2 currentDirection;
     private Vector2 nextPosition;
-
+    private bool collected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,16 +30,23 @@ public class MushroomController : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Pipe")){
+        if(col.gameObject.CompareTag("Pipe") || col.gameObject.CompareTag("Wall")){
             currentDirection = -currentDirection;
         }
         if(col.gameObject.CompareTag("Player")){
             speed = 0;
             shroomBody.velocity = Vector2.zero;
+            consume();
+            collected = true;
+
         }
     }
 
+    IEnumerator consume(){
+        gameObject.transform.localScale = new  Vector3(this.transform.localScale.x*2f, this.transform.localScale.y*2f, this.transform.localScale.z);
+        yield break;
+    }
     void OnBecameInvisible(){
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
+<<<<<<< Updated upstream
 public float speed;
 private Rigidbody2D marioBody;
 private bool onGroundState = true;
@@ -21,6 +22,25 @@ public GameObject restartButton;
 private Animator marioAnimator;
 private AudioSource marioAudio;
 public ParticleSystem dustCloud;
+=======
+    public float speed;
+    private Rigidbody2D marioBody;
+    private bool onGroundState = true;
+    public float maxSpeed = 10;
+    public float upSpeed = 5;
+    private SpriteRenderer marioSprite;
+    private bool faceRightState = true;
+    public Transform enemyLocation;
+    public Text scoreText;
+    private int score = 0;
+    private bool countScoreState = false;
+    public GameObject restartButton;
+    private Animator marioAnimator;
+    private AudioSource marioAudio;
+    public ParticleSystem dustCloud;
+    private Vector3 scaler;
+
+>>>>>>> Stashed changes
     void Start()
     {
         // Set to be 30 FPS
@@ -30,6 +50,7 @@ public ParticleSystem dustCloud;
         marioAnimator = GetComponent<Animator>();
         marioAudio = GetComponent<AudioSource>();
         restartButton.SetActive(false);
+        GameManager.OnPlayerDeath  +=  PlayerDiesSequence;
     }
 
     // Update is called once per frame
@@ -57,6 +78,14 @@ public ParticleSystem dustCloud;
             }
         }
 
+        if (Input.GetKeyDown("z")){
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z,this.gameObject);
+        }
+
+        if (Input.GetKeyDown("x")){
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.X,this.gameObject);
+}
+
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
         marioAnimator.SetBool("onGround", onGroundState);
         Debug.Log(onGroundState);
@@ -67,7 +96,7 @@ public ParticleSystem dustCloud;
         if (col.gameObject.CompareTag("Ground")){
             onGroundState = true;
             countScoreState = false; //reset score state
-            scoreText.text = "Score:" + score.ToString();
+            // scoreText.text = "Score:" + score.ToString();
             dustCloud.Play();
         }
 
@@ -95,6 +124,7 @@ public ParticleSystem dustCloud;
             countScoreState = true; //check if gomba is below
         }
     }
+<<<<<<< Updated upstream
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Enemy")){
             Debug.Log("Collided with Gomba!");
@@ -102,9 +132,39 @@ public ParticleSystem dustCloud;
             restartButton.gameObject.SetActive(true);
             score = 0;
         }
+=======
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+>>>>>>> Stashed changes
     }
 
     void PlayJumpSound(){
         marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    void  PlayerDiesSequence(){
+	    // Mario dies
+	    Debug.Log("Mario dies");
+	    // do whatever you want here, animate etc
+	    // ...
+        scaler = transform.localScale / (float) 10;
+        StartCoroutine("ScaleOut");
+        Time.timeScale = 0.0f;
+        // restartButton.gameObject.SetActive(true);
+        // score = 0;
+    }
+    IEnumerator ScaleOut(){
+        Vector2 direction = new Vector2(Random.Range(-1.0f, 1.0f), 1);
+        marioBody.AddForce(direction.normalized * 10, ForceMode2D.Impulse);
+
+        yield return null;
+
+        for (int step =0; step < 30; step++){
+            this.transform.localScale = this.transform.localScale - scaler;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }
