@@ -45,12 +45,10 @@ public class ObjectPooler : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Creating things");
         SharedInstance = this;
         pooledObjects = new List<ExistingPoolItem>();
         foreach (ObjectPoolItem item in itemsToPool)
         {
-            Debug.Log("I'm creating an item");
             for (int i = 0; i < item.amount; i++)
             {
                 // this 'pickup' a local variable, but Unity will not remove it since it exists in the scene
@@ -62,12 +60,6 @@ public class ObjectPooler : MonoBehaviour
             }
         }
     }
-
-    public void Test()
-    {
-        Debug.Log("I'm ok");
-    }
-
     public GameObject GetPooledObject(ObjectType type)
     {
         // return inactive pooled object if it matches the type

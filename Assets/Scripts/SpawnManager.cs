@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameConstants gameConstants;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,21 +14,21 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         // spawn two goombaEnemy
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < gameConstants.goombaEnemyNumber; j++)
             spawnFromPooler(ObjectType.goombaEnemy);
         // spawn two greenEnemy
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < gameConstants.greenEnemyNumber; j++)
             spawnFromPooler(ObjectType.greenEnemy);
     }
-    void spawnFromPooler(ObjectType i)
+    public void spawnFromPooler(ObjectType i)
     {
+        // Debug.Log("Spawn from pooler called");
         // static method access
-        ObjectPooler.SharedInstance.Test();
         GameObject item = ObjectPooler.SharedInstance.GetPooledObject(i);
         if (item != null)
         {
             //set position, and other necessary states
-            item.transform.position = new Vector3(Random.Range(-4.5f, 4.5f), item.transform.position.y, 0.2f);
+            item.transform.position = new Vector3(Random.Range(-4.5f, 4.5f), gameConstants.groundSurface + 0.5f, -1f);
             item.SetActive(true);
         }
         else

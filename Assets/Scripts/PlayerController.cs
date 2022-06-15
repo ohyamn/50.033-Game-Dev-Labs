@@ -13,13 +13,10 @@ public class PlayerController : MonoBehaviour
     public float upSpeed = 5;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
-    public Transform enemyLocation;
-    public Text scoreText;
-    private int score = 0;
-    private bool countScoreState = false;
     public GameObject restartButton;
     private Animator marioAnimator;
-    private AudioSource marioAudio;
+    public AudioSource marioJumpAudio;
+    public AudioSource marioDieAudio;
     public ParticleSystem dustCloud;
     void Start()
     {
@@ -28,8 +25,15 @@ public class PlayerController : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator = GetComponent<Animator>();
-        marioAudio = GetComponent<AudioSource>();
+        // marioAudio = GetComponent<AudioSource>();
         restartButton.SetActive(false);
+
+        GameManager.OnPlayerDeath += PlayerDiesSequence;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.OnPlayerDeath -= PlayerDiesSequence;
     }
 
     // Update is called once per frame
@@ -51,6 +55,16 @@ public class PlayerController : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
         }
 
+        if (Input.GetKeyDown("z"))
+        {
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z, this.gameObject);
+        }
+
+        if (Input.GetKeyDown("x"))
+        {
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.X, this.gameObject);
+        }
+
         // if (!onGroundState && countScoreState)
         // {
         //     if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
@@ -69,8 +83,6 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Ground"))
         {
             onGroundState = true;
-            countScoreState = false; //reset score state
-            scoreText.text = "Score:" + score.ToString();
             dustCloud.Play();
         }
 
@@ -100,22 +112,33 @@ public class PlayerController : MonoBehaviour
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
-            countScoreState = true; //check if gomba is below
         }
+    }
+
+    void PlayerDiesSequence()
+    {
+        // Mario dies
+        Debug.Log("Mario dies");
+        marioDieAudio.PlayOneShot(marioDieAudio.clip);
+        // Time.timeScale = 0.0f;
+        marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+        marioBody.SetRotation(90);
+        GetComponent<Collider2D>().enabled = false;
+        restartButton.gameObject.SetActive(true);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Collided with Gomba!");
-            Time.timeScale = 0.0f;
-            restartButton.gameObject.SetActive(true);
-            score = 0;
-        }
+        // if (other.gameObject.CompareTag("Enemy"))
+        // {
+        //     Debug.Log("Collided with Gomba!");
+        //     Time.timeScale = 0.0f;
+        //     restartButton.gameObject.SetActive(true);
+        //     score = 0;
+        // }
     }
 
     void PlayJumpSound()
     {
-        marioAudio.PlayOneShot(marioAudio.clip);
+        marioJumpAudio.PlayOneShot(marioJumpAudio.clip);
     }
 }

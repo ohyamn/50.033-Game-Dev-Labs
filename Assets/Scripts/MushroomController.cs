@@ -29,17 +29,20 @@ public class MushroomController : MonoBehaviour
         shroomBody.MovePosition(nextPosition);
     }
 
-    void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Pipe")){
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Pipe"))
+        {
             currentDirection = -currentDirection;
         }
-        if(col.gameObject.CompareTag("Player")){
+        if (col.gameObject.CompareTag("Player"))
+        {
             speed = 0;
             shroomBody.velocity = Vector2.zero;
         }
     }
 
-    void OnBecameInvisible(){
-        Destroy(gameObject);
-    }
+    // void OnBecameInvisible(){
+    //     Destroy(gameObject);
+    // }
 }

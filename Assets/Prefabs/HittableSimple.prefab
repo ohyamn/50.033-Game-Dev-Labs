@@ -246,8 +246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8909817183352498172}
+  bumpAudio: {fileID: 0}
   springJoint: {fileID: 8909817183352498170}
-  consummablePrefab: {fileID: 9137625576665806495, guid: 2fa7190a4f207ab40aea28b9bcaa3b33, type: 3}
+  orangeMushroomPrefab: {fileID: 9137625576665806495, guid: dc96c0835e894483c95ff230e3b4fc34, type: 3}
+  redMushroomPrefab: {fileID: 9137625576665806495, guid: 78e836abc077d498586001e2615193a9, type: 3}
   spriteRenderer: {fileID: 8909817183352498173}
   usedQuestionBox: {fileID: 21300054, guid: 855dc7396df3c4e49ac4d21234eac5e1, type: 3}
 --- !u!82 &2773732200208833062
