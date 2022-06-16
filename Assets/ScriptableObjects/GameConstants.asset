@@ -22,6 +22,6 @@ MonoBehaviour:
   enemyPatroltime: 2
   maxOffset: 5
   groundSurface: -1
-  greenEnemyNumber: 1
+  greenEnemyNumber: 16
   goombaEnemyNumber: 1
   testValue: 0
