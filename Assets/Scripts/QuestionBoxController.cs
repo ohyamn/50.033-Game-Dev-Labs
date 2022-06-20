@@ -7,8 +7,7 @@ public class QuestionBoxController : MonoBehaviour
     public Rigidbody2D rigidBody;
     public AudioSource bumpAudio;
     public SpringJoint2D springJoint;
-    public GameObject orangeMushroomPrefab;//mushroom prefab
-    public GameObject redMushroomPrefab;//mushroom prefab
+    public GameObject mushroomPrefab;//mushroom prefab
     public SpriteRenderer spriteRenderer;
     public Sprite usedQuestionBox;//the sprite that indicates empty box instead
     private bool hit = false;
@@ -35,15 +34,7 @@ public class QuestionBoxController : MonoBehaviour
             // ensure we move the object sufficiently
             rigidBody.AddForce(new Vector2(0, rigidBody.mass * 20), ForceMode2D.Impulse);
             // spawn the mushroom prefab slightly above the box
-            float rndOutput = Random.Range(-1f, 1f);
-            if (rndOutput > 0)
-            {
-                Instantiate(orangeMushroomPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, this.transform.position.z), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(redMushroomPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, this.transform.position.z), Quaternion.identity);
-            }
+            Instantiate(mushroomPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1.0f, this.transform.position.z), Quaternion.identity);
             StartCoroutine(DisableHittable());
         }
     }
