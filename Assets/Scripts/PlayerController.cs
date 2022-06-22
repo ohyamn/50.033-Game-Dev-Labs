@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public AudioSource marioJumpAudio;
     public AudioSource marioDieAudio;
     public ParticleSystem dustCloud;
+
+    private static PlayerController _instance;
+
     void Start()
     {
         // Set to be 30 FPS
@@ -29,6 +32,21 @@ public class PlayerController : MonoBehaviour
         restartButton.SetActive(false);
 
         GameManager.OnPlayerDeath += PlayerDiesSequence;
+    }
+
+    private void Awake()
+    {
+        // check if the _instance is not this, means it's been set before, return
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        // otherwise, this is the first time this instance is created
+        _instance = this;
+        // add to preserve this object open scene loading
+        DontDestroyOnLoad(this.gameObject); // only works on root gameObjects
     }
 
     void OnDestroy()

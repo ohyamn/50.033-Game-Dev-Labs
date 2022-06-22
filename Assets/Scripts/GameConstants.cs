@@ -34,6 +34,13 @@ public class GameConstants : ScriptableObject
     public int greenEnemyNumber = 0;
     public int goombaEnemyNumber = 0;
 
+    // for scriptable objects
+    // Mario basic starting values
+    public int playerStartingMaxSpeed = 5;
+    public int playerMaxJumpSpeed = 30;
+    public int playerDefaultForce = 150;
+
+
     // for testing
     public int testValue;
 }
