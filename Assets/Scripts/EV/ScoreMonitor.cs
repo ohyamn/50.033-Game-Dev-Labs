@@ -9,9 +9,10 @@ public class ScoreMonitor : MonoBehaviour
     {
         UpdateScore();
     }
-    // void OnApplicationQuit(){
-    //     marioScore.SetValue(0);
-    // }
+    void OnApplicationQuit()
+    {
+        marioScore.SetValue(0);
+    }
     public void UpdateScore()
     {
         text.text = "Score: " + marioScore.Value.ToString();

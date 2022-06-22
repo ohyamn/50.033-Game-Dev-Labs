@@ -24,4 +24,7 @@ MonoBehaviour:
   groundSurface: -1
   greenEnemyNumber: 16
   goombaEnemyNumber: 1
+  playerStartingMaxSpeed: 5
+  playerMaxJumpSpeed: 30
+  playerDefaultForce: 150
   testValue: 0

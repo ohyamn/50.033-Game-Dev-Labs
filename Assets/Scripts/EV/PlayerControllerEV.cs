@@ -18,6 +18,7 @@ public class PlayerControllerEV : MonoBehaviour
     private bool isADKeyUp = true;
     private bool onGroundState = true;
     public ParticleSystem dustCloud;
+    public CustomCastEvent onCast;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +39,6 @@ public class PlayerControllerEV : MonoBehaviour
             faceRightState = false;
             marioSprite.flipX = true;
             isADKeyUp = false;
-            // if (Mathf.Abs(marioBody.velocity.x) > 1.0)
-            // marioAnimator.SetTrigger("onSkid");
         }
 
         if (Input.GetKeyDown("d"))
@@ -47,8 +46,6 @@ public class PlayerControllerEV : MonoBehaviour
             faceRightState = true;
             marioSprite.flipX = false;
             isADKeyUp = false;
-            // if (Mathf.Abs(marioBody.velocity.x) > 1.0)
-            // marioAnimator.SetTrigger("onSkid");
         }
         if ((Input.GetKeyUp("a") || Input.GetKeyUp("d")))
         {
@@ -63,6 +60,14 @@ public class PlayerControllerEV : MonoBehaviour
         if (Input.GetKeyUp("space"))
         {
             isSpacebarUp = true;
+        }
+        if (Input.GetKeyDown("z"))
+        {
+            onCast.Invoke(KeyCode.Z);
+        }
+        if (Input.GetKeyDown("x"))
+        {
+            onCast.Invoke(KeyCode.X);
         }
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
         marioAnimator.SetBool("onGround", onGroundState);
